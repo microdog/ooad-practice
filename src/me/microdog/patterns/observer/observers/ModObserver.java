@@ -3,13 +3,13 @@
  */
 package me.microdog.patterns.observer.observers;
 
-import me.microdog.patterns.observer.Subject.OnChangeListener;
+import me.microdog.patterns.observer.Subject.OnValueChangedListener;
 
 /**
  * @author Microdog <dlangu0393@gmail.com>
  *
  */
-public class ModObserver implements OnChangeListener {
+public class ModObserver implements OnValueChangedListener {
 
 	private int mod;
 

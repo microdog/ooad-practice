@@ -11,7 +11,7 @@ import java.util.ArrayList;
  */
 public class Subject {
 
-	public interface OnChangeListener {
+	public interface OnValueChangedListener {
 		/**
 		 * Invoked on value updated.
 		 * 
@@ -22,7 +22,7 @@ public class Subject {
 
 	private int value;
 
-	private ArrayList<OnChangeListener> listeners;
+	private ArrayList<OnValueChangedListener> listeners;
 
 	/**
 	 * 
@@ -30,7 +30,7 @@ public class Subject {
 	public Subject() {
 		super();
 
-		listeners = new ArrayList<Subject.OnChangeListener>();
+		listeners = new ArrayList<Subject.OnValueChangedListener>();
 	}
 
 	/**
@@ -46,14 +46,14 @@ public class Subject {
 	 */
 	public void setValue(int value) {
 		this.value = value;
-		onChange();
+		onValueChanged();
 	}
 
 	/**
 	 * Invoked on value changed.
 	 */
-	private void onChange() {
-		for (OnChangeListener listener : listeners) {
+	private void onValueChanged() {
+		for (OnValueChangedListener listener : listeners) {
 			listener.update(value);
 		}
 	}
@@ -63,7 +63,7 @@ public class Subject {
 	 * 
 	 * @param listener
 	 */
-	public void addOnChangeListener(OnChangeListener listener) {
+	public void addOnChangeListener(OnValueChangedListener listener) {
 		listeners.add(listener);
 	}
 
@@ -72,7 +72,7 @@ public class Subject {
 	 * 
 	 * @param listener
 	 */
-	public void removeOnChangeListener(OnChangeListener listener) {
+	public void removeOnChangeListener(OnValueChangedListener listener) {
 		listeners.remove(listener);
 	}
 }
