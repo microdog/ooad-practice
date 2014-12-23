@@ -28,7 +28,12 @@ public class GlobalVariableTest {
 
 	@Test
 	public void testSingleton() throws NoSuchFieldException, SecurityException,
-			IllegalArgumentException, IllegalAccessException {
+			IllegalArgumentException, IllegalAccessException,
+			NoSuchMethodException {
+		// Singleton class cannot be instantiated
+		assertFalse(GlobalVariable.class.getDeclaredConstructor(
+				new Class<?>[] {}).isAccessible());
+
 		Field singletonField = GlobalVariable.class
 				.getDeclaredField("selfInstance");
 
@@ -62,8 +67,8 @@ public class GlobalVariableTest {
 	}
 
 	public static void main(String[] args) {
-		_("Get singleton instance: " + GlobalVariable.getInstance());
-		_("Get singleton instance: " + GlobalVariable.getInstance());
+		_("Get singleton instance(1st): " + GlobalVariable.getInstance());
+		_("Get singleton instance(2nd): " + GlobalVariable.getInstance());
 
 		_("Default value:" + GlobalVariable.getInstance().getValue());
 
